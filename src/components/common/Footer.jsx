@@ -60,12 +60,12 @@ const Footer = () => {
       <div className='flex flex-row ml-5 '>
   
         {
-        FooterLink2.map((obj)=> (
-          <div className='flex flex-col space-x-2 gap-2 '>
+        FooterLink2.map((obj,index)=> (
+          <div key={index} className='flex flex-col space-x-2 gap-2 '>
              <p className='w-[174.67px] h-[24px] text-richblack-100 font-[600]'>{obj.title}</p>
              {
-             obj.links.map((text)=>(
-                <Link to={text.link}>
+             obj.links.map((text,index)=>(
+                <Link to={text.link} key={index}>
                     <p className='w-[174.67px] h-[22px] font-[400] text-[14px] text-richblack-400'>{text.title}</p>
 
                 </Link>

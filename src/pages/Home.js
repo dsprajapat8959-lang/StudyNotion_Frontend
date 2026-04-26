@@ -10,12 +10,11 @@ import TimelineSection from '../components/core/HomePage/TimelineSection';
 import LearningLanguageSection from '../components/core/HomePage/LearningLanguageSection';
 import InstructorSection from '../components/core/HomePage/InstructorSection';
 import ExploreMore from '../components/core/HomePage/ExploreMore';
-import Navbar from '../components/common/Navbar';
 
 const Home = () => {
   return (
     <div>
-        <Navbar/>
+        
 
         {/* Section 1 */}
         <div className='relative max-w-maxContent mx-auto flex flex-col w-11/12 items-center text-white justify-between'>
