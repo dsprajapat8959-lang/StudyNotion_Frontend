@@ -1,11 +1,14 @@
 import { useState } from "react"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-
-
+import toast from "react-hot-toast"
+import { sendOtp } from "../../../services/operations/auth"
+import {setSignupData} from "../../../slices/authSlice"
 
 function SignupForm() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
  
 
   // student or instructor
@@ -34,22 +37,21 @@ function SignupForm() {
 
   // Handle Form Submission
   const handleOnSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (password !== confirmPassword) {
-      console.log("Passwords Do Not Match")
+      toast.error("Passwords do not match")
       return
     }
+
     const signupData = {
       ...formData,
       accountType,
     }
-        console.log(signupData)
+    console.log(signupData)
 
-
-
-   
-
+   dispatch(sendOtp(email,navigate))
+   dispatch(setSignupData(signupData));
 
     setFormData({
       firstName: "",
@@ -58,7 +60,6 @@ function SignupForm() {
       password: "",
       confirmPassword: "",
     })
-    
   }
 
   
@@ -128,12 +129,12 @@ function SignupForm() {
           </p>
           <input
             required
-            type="text"
+            type="email"
             name="email"
             value={email}
             onChange={handleOnChange}
             placeholder="Enter email address"
-              className="bg-richblack-800 p-1 rounded-sm text-richblack-200 font-medium w-[94%] focus:bg-richblack-700 focus:outline-none focus:ring-2 focus:ring-yellow-50"
+            className="bg-richblack-800 p-1 rounded-sm text-richblack-200 font-medium w-full focus:bg-richblack-700 focus:outline-none focus:ring-2 focus:ring-yellow-50"
           />
         </label>
         <div className="flex gap-x-4">
