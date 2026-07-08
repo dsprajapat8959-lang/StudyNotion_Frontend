@@ -6,7 +6,7 @@ export function deleteProfile({ token, navigate }) {
     const toastId = toast.loading("Loading...")
     return async(dispatch) => {
         try {
-            const response = await apiConnector("DELETE", profileEndpoints.DELETE_PROFILE_API, null, { Authorization: `Bearer ${token}` });
+            await apiConnector("DELETE", profileEndpoints.DELETE_PROFILE_API, null, { Authorization: `Bearer ${token}` });
             toast.dismiss(toastId);
             toast.success("Profile deleted successfully", { id: toastId });
             navigate("/");
@@ -21,7 +21,7 @@ export function updateProfile({token,data}){
     const toastId = toast.loading("Loading..")
     return async(dispatch) => {
         try {
-            const response = await apiConnector("PUT", profileEndpoints.UPDATE_PROFILE_API, data, { Authorization: `Bearer ${token}` });
+            await apiConnector("PUT", profileEndpoints.UPDATE_PROFILE_API, data, { Authorization: `Bearer ${token}` });
             toast.dismiss(toastId);
             toast.success("Profile update successful", { id: toastId });
             // navigation should be handled by caller if needed
@@ -36,7 +36,7 @@ export function changePassword({token, data}){
     const toastId = toast.loading("Loading..");
     return async(dispatch) => {
         try {
-            const response = await apiConnector("PUT", endpoints.CHANGE_PASSWORD_API, data, { Authorization: `Bearer ${token}` });
+            await apiConnector("PUT", endpoints.CHANGE_PASSWORD_API, data, { Authorization: `Bearer ${token}` });
             toast.dismiss(toastId);
             toast.success("Password changed successfully", { id: toastId });
         } catch (error) {
