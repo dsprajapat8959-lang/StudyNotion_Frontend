@@ -11,8 +11,8 @@ export function contactUs(firstName,lastName,phoneNo, email, message, code){
            const response = await apiConnector("POST", contactusEndpoints.CONTACT_API, {firstName,lastName,phoneNo, email, message, code});
           
            if(!response.data.success){
-            throw new Error(response.data.message);
             toast.dismiss(toastId);
+            throw new Error(response.data.message);
            }
            toast.dismiss(toastId);
            toast.success("Response submitted successfully");

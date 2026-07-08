@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux"
 import { apiConnector } from "../apiconnector"
 import {endpoints} from "../apis"
 import toast from "react-hot-toast"
@@ -86,8 +85,9 @@ export function signup(firstName,lastName,email,password,confirmPassword,account
             const response = await apiConnector("POST", endpoints.SIGNUP_API ,{firstName,lastName,email,password,confirmPassword, otp, accountType} )
             console.log("Signup responsee --> ", response.data);
             if(!response.data.success){
+                toast.dismiss(toastId);
+                toast.error(response.data.message);
                 throw new Error("Signup Failed")
-                toast.error(response.data.message)
             }
             toast.dismiss(toastId);
             toast.success("Signup successfull")
