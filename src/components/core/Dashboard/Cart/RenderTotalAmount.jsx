@@ -1,18 +1,12 @@
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useSelector } from 'react-redux';
 
-import IconBtn from "../../../common/IconBtn"
-import { buyCourse } from "../../../../services/operations/studentFeaturesAPI"
+import IconBtn from '../../../common/IconBtn'
 
 export default function RenderTotalAmount() {
-  const { total, cart } = useSelector((state) => state.cart)
-  const { token } = useSelector((state) => state.auth)
-  const { user } = useSelector((state) => state.profile)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { total } = useSelector((state) => state.cart)
 
   const handleBuyCourse = () => {
-    
+    // Placeholder for buy course action
   }
 
   return (

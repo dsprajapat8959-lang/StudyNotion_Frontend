@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import OtpInput from 'react-otp-input';
 import { FaClockRotateLeft } from "react-icons/fa6";
 import { useDispatch, useSelector } from 'react-redux';
-import { setSignupData } from '../slices/authSlice';
 import { sendOtp, signup } from '../services/operations/auth';
 
 

@@ -14,7 +14,7 @@ const Footer = () => {
     <div className=' flex flex-row mt-5'>
       <div className='w-[200px] h-[538px] relative right-12'>
         <div className='flex flex-col space-x-2 gap-2'>
-            <img src={Logo} height={32} width={160}/>
+            <img src={Logo} alt="StudyNotion logo" height={32} width={160}/>
             <p className='w-[174.67px] h-[24px] text-richblack-100 font-[600]'>Company</p>
             <p className='w-[174.67px] h-[22px] font-[400] text-[14px] text-richblack-400'>About</p>
             <p className='w-[174.67px] h-[22px] font-[400] text-[14px] text-richblack-400'>Careers</p>

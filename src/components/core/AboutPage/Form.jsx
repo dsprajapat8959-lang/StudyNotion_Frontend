@@ -122,7 +122,6 @@ const Form = () => {
             <div className='w-[72px] h-[22px] text-[14px] text-richblack-5'>Message</div>
             <textarea
             required
-            className='text-black'
             value={message}
             name='message'
             className='w-[536px] h-[123px] rounded-md p-[12px] bg-richblack-800 text-[16px] text-richblack-200'

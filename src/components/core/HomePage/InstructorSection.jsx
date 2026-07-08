@@ -11,6 +11,7 @@ const InstructorSection = () => {
         <div className='w-[50%]'>
             <img 
             src={Instructor}
+            alt="Instructor"
             className='shadow-white'
             />
         </div>

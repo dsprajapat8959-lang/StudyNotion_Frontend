@@ -8,7 +8,6 @@ import { MdShoppingCart } from "react-icons/md";
 import { apiConnector } from '../../services/apiconnector'
 import { categoryEndpoints } from '../../services/apis'
 import { IoIosArrowDown } from "react-icons/io";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { logout } from '../../services/operations/auth'
 
 
@@ -55,7 +54,7 @@ const Navbar = () => {
     <div className='flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700'>
       <div className='flex w-11/12 max-w-maxContent justify-between items-center'>
         <Link to="/">
-            <img src={logo} height={42} width={160}/>
+            <img src={logo} alt="StudyNotion logo" height={42} width={160}/>
         </Link>
 
         <nav>
@@ -136,7 +135,7 @@ const Navbar = () => {
         {
             token !== null && (
                 <div className='relative flex flex-row items-center mr-16 gap-1' onClick={dropDownHandler}>
-                    <img src={user.image} className='h-8 w-8 rounded-full object-cover' />
+                    <img src={user.image} alt={`${user.firstName} profile`} className='h-8 w-8 rounded-full object-cover' />
                     <IoIosArrowDown fontSize={18} className='text-richblack-25 h-5 w-5' />
 
                     {drop && (

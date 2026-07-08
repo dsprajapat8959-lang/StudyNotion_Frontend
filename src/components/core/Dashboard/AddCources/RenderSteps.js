@@ -27,7 +27,7 @@ const RenderSteps = () => {
         data.map((state,index) => (
             <div key={index} className='flex flex-row'>
             <div
-            className={` ${state.id==step?"bg-yellow-900 text-yellow-50 border border-yellow-50":"bg-richblack-600 text-richblack-200 border border-richblack-200"} rounded-full  w-16 text-center   `}
+            className={` ${state.id===step?"bg-yellow-900 text-yellow-50 border border-yellow-50":"bg-richblack-600 text-richblack-200 border border-richblack-200"} rounded-full  w-16 text-center   `}
             >
                 {state.id}
                 </div>

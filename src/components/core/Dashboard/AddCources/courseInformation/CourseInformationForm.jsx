@@ -19,23 +19,20 @@ const CourseInformationForm = () => {
   }= useForm();
 
   const {course, editCourse} = useSelector((state)=> state.course);
-  const [loading,setLoading] = useState(false);
   const[categories, setCategories] = useState([]);
   const[preview,setPreview] = useState("");
   
   const thumbnail = watch("thumbnail");
-  async function getCategories(){
-      setLoading(true);
-      const result = await getAllCategory();
-      console.log("Result",result)
-      setCategories(result);
-      setLoading(false);
-    }
-  function onSubmit(data){
+
+  async function onSubmit(data){
     dispatch(setCourse(data));
     console.log(data);
   }
   useEffect(()=>{
+    const loadCategories = async () => {
+      const result = await getAllCategory();
+      setCategories(result);
+    }
 
     if(editCourse){
       setValue("courseTitle", course.courseName)
@@ -48,7 +45,7 @@ const CourseInformationForm = () => {
       setValue("courseImage", course.thumbnail)
     }
 
-    getCategories();
+    loadCategories();
 
     if(thumbnail && thumbnail.length>0){
       const file = thumbnail[0]
@@ -57,7 +54,7 @@ const CourseInformationForm = () => {
       setPreview(imageUrl);
     }
 
-  },[thumbnail])
+  },[thumbnail, editCourse, course, setValue])
   return (
     <div className='mx-8'>
       <br/>
