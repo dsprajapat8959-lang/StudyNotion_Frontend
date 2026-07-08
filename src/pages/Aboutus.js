@@ -7,7 +7,7 @@ import image4 from "../assets/Images/FoundingStory.png"
 import Info from '../components/core/AboutPage/Info'
 import Card from '../components/core/AboutPage/Card'
 import Form from '../components/core/AboutPage/Form'
-import Navbar from '../components/common/Navbar'
+
 import Footer from '../components/common/Footer'
 
 
@@ -27,9 +27,9 @@ const Aboutus = () => {
         <p className='text-richblack-300 text-[16px] w-[809px] h-[72px] text-center mx-auto'>Studynotion is at the forefront of driving innovation in online education. We're passionate about creating a brighter future by offering cutting-edge courses, leveraging emerging technologies, and nurturing a vibrant learning community.</p>    
         <br/>
         <div className='flex flex-row gap-4 h-[311px] w-[1200px] mx-auto'>
-            <img src={image1}/>
-            <img src={image2}/>
-            <img src={image3}/>
+            <img src={image1} alt="About us section 1"/>
+            <img src={image2} alt="About us section 2"/>
+            <img src={image3} alt="About us section 3"/>
         </div>
         <br/>
         <br/>
@@ -53,7 +53,7 @@ const Aboutus = () => {
                     As experienced educators ourselves, we witnessed firsthand the limitations and challenges of traditional education systems. We believed that education should not be confined to the walls of a classroom or restricted by geographical boundaries. We envisioned a platform that could bridge these gaps and empower individuals from all walks of life to unlock their full potential.
                 </p>
             </div>
-            <img src={image4}  className='w-[470px] h-[278px] my-auto ' />
+            <img src={image4} alt="Founding story" className='w-[470px] h-[278px] my-auto ' />
 
         </div>
 

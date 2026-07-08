@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { RxCross1 } from "react-icons/rx";
 import { useState } from 'react';
 
 const ChipInput = ({setValue,getValues,register}) => {
   const [tags,setTags] = useState([]);
-  const [tag,setTag] = useState("");
   const keyHandler =  (e)=>{
-    if(e.key == "Enter"){
+    if(e.key === "Enter"){
       e.preventDefault();
       if(e.target.value==="") return;
       const updatedTags = [...tags,e.target.value]

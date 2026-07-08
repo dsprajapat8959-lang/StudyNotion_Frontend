@@ -40,7 +40,7 @@ const TimelineSection = () => {
                 timelinge.map((obj, idx)=>(
                     <div className='flex flex-row gap-6 mt-10 ' key={idx}>
                         <div className='w-[50px] h-[50px] bg-white flex items-center justify-center'>
-                            <img src={obj.Logo} width={30}/>
+                            <img src={obj.Logo} alt={obj.heading} width={30}/>
                         </div>
                         <div>
                             <h2 className='font-semibold text-[18px]'>{obj.heading}</h2>
@@ -55,6 +55,7 @@ const TimelineSection = () => {
         </div>
         <div className='relative shadow-blue-200'>
         <img src={timeLineImage}
+        alt="Timeline illustration"
         className='shadow-white object-cover h-fit'/>
 
 

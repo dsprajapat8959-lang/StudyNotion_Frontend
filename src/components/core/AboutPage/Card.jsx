@@ -1,6 +1,4 @@
 import React from 'react'
-import Button from '../HomePage/Button';
-import HightlightText from '../HomePage/HightlightText';
 import { Link } from 'react-router-dom';
 
 const Card = () => {

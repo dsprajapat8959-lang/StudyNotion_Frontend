@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaArrowLeft } from "react-icons/fa";
 import { getResetPasswordToken } from '../services/operations/auth';
 import { setLoading } from '../slices/authSlice';
-import toast from 'react-hot-toast';
 import Loader from '../components/common/Loader';
 
 

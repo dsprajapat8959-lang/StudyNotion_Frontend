@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa';
-import { FaRightLeft } from 'react-icons/fa6';
-import { FcLeft } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { resetPassword } from '../services/operations/auth';
 import { useDispatch } from 'react-redux';

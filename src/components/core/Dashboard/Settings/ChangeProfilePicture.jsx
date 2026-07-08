@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from "react"
 import { FiUpload } from "react-icons/fi"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 import IconBtn from "../../../common/IconBtn"
 
 export default function ChangeProfilePicture() {
-  const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.profile)
-  const dispatch = useDispatch()
 
   const [loading, setLoading] = useState(false)
   const [imageFile, setImageFile] = useState(null)
@@ -20,7 +18,10 @@ export default function ChangeProfilePicture() {
   }
 
   const handleFileChange = (e) => {
-    
+    const file = e.target.files?.[0]
+    if (file) {
+      setImageFile(file)
+    }
   }
 
   const previewFile = (file) => {
@@ -32,7 +33,11 @@ export default function ChangeProfilePicture() {
   }
 
   const handleFileUpload = () => {
-    
+    if (!imageFile) return;
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 0)
   }
 
   useEffect(() => {
