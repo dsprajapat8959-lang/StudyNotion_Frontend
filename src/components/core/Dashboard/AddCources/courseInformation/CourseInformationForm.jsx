@@ -4,10 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory } from '../../../../../services/operations/category';
 import ChipInput from './ChipInput';
 import RequirementField from './RequirementField';
-import { setCourse } from '../../../../../slices/courceSlice';
+import { setCourse, setStep } from '../../../../../slices/courceSlice';
+import {toast} from 'react-hot-toast';
+import { createCourse } from '../../../../../services/operations/course';
 
 const CourseInformationForm = () => {
   const dispatch = useDispatch()
+  const {token} =  useSelector((state)=>state.auth);
   
   const {
     handleSubmit,
@@ -24,10 +27,7 @@ const CourseInformationForm = () => {
   
   const thumbnail = watch("thumbnail");
 
-  async function onSubmit(data){
-    dispatch(setCourse(data));
-    console.log(data);
-  }
+  
   useEffect(()=>{
     const loadCategories = async () => {
       const result = await getAllCategory();
@@ -35,14 +35,14 @@ const CourseInformationForm = () => {
     }
 
     if(editCourse){
-      setValue("courseTitle", course.courseName)
-      setValue("courseShortDesc", course.courseDescription)
-      setValue("coursePrice", course.price)
-      setValue("courseTags", course.tag)
-      setValue("courseBenefits", course.whatYouWillLearn)
-      setValue("courseCategory", course.category)
-      setValue("courseRequirements", course.instructions)
-      setValue("courseImage", course.thumbnail)
+      setValue("courseTitle", course?.courseName || "")
+      setValue("courseShortDesc", course?.courseDescription || "")
+      setValue("price", course?.price || "")
+      setValue("tags", course?.tag || [])
+      setValue("courseBenefits", course?.whatYouWillLearn || "")
+      setValue("category", course?.category || "")
+      setValue("requirements", course?.instructions || [])
+      setValue("thumbnail", course?.thumbnail || "")
     }
 
     loadCategories();
@@ -52,9 +52,38 @@ const CourseInformationForm = () => {
       const imageUrl = URL.createObjectURL(file);
 
       setPreview(imageUrl);
+      return () => URL.revokeObjectURL(imageUrl);
     }
 
   },[thumbnail, editCourse, course, setValue])
+
+  const onSubmit = async(data) =>{
+    if(!editCourse){
+      const formData = new FormData();
+      formData.append("courseName", data.courseTitle);
+      formData.append("courseDescription", data.courseShortDesc);
+      formData.append("whatYouWillLearn", data.courseBenefits);
+      formData.append("price", data.price);
+      formData.append("category", data.category);
+      formData.append("thumbnail", data.thumbnail[0]);
+
+      const tags = getValues("tags") || [];
+      const requirements = getValues("requirements") || [];
+
+      formData.append("tags", JSON.stringify(tags));
+      formData.append("instructions", JSON.stringify(requirements));
+
+      const response = await createCourse(formData, token);
+
+      if (!response) {
+        return;
+      }
+
+      dispatch(setCourse(response));
+      dispatch(setStep(2));
+      toast.success("Course created successfully");
+    }
+  }
   return (
     <div className='mx-8'>
       <br/>
@@ -88,6 +117,19 @@ const CourseInformationForm = () => {
           )}
         </div>
           <br/>
+        <div>
+          <label htmlFor='courseBenefits'>What you will learn <sup className='text-pink-200'>*</sup></label>
+          <textarea
+          id='courseBenefits'
+          className='h-[48px] w-[617px] rounded pl-2 bg-richblack-700 text-[16px] text-richblack-200'
+          placeholder='Enter what students will learn'
+          {...register("courseBenefits", {required:true})}
+          />
+          {errors.courseBenefits && (
+            <span>Enter course benefits</span>
+          )}
+        </div>
+        <br/>
         <div>
           <label htmlFor='price'>Price <sup className='text-pink-200'>*</sup></label>
           <br/>
@@ -160,7 +202,7 @@ const CourseInformationForm = () => {
         <br/>
         <br/>
         <br/>
-      <button type='submit' className='bg-yellow-50 font-semibold  text-black rounded px-3 text-xl  w-fit  '>Next -</button>
+      <button type='submit' className='bg-yellow-50 font-semibold  text-black rounded px-3 text-xl  w-fit  '>{!editCourse? "Next":"Save changes"}</button>
       </form>
       
     </div>

@@ -8,10 +8,8 @@ const Index = () => {
     <div className='w-full'>
         <h1 className='text-richblack-25 font-bold text-3xl m-5'>Add cources</h1>
         <div className='flex '>
-          <RenderSteps/>
-        
+          <RenderSteps/>     
          <List />
-
         </div>
         
       
