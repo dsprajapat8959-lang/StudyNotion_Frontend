@@ -19,6 +19,11 @@ import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
 import Cart from "./components/core/Dashboard/Cart/index";
 import Index from "./components/core/Dashboard/AddCources/Index"
 import { useSelector } from "react-redux";
+import MyCourses from "./components/core/Dashboard/MyCourses";
+import Catalog from "./components/core/Catalog/Catalog";
+import Course from "./pages/Course";
+import ViewCourse from "./pages/ViewCourse";
+import VideoSection from "./components/core/ViewCourse/VideoSection";
 
 function App() {
 
@@ -78,20 +83,38 @@ function App() {
             <Dashboard/>
           </PrivateRoute>
         }>
-          <Route path="/dashboard/my-profile" element={<Profile/>}/>
+          <Route path="/dashboard/my-profile"  element={<Profile/>}/>
           <Route path="/dashboard/enrolled-courses" element={<EnrolledCourses/>}/>
           <Route path="/dashboard/settings" element={<Settings/>}/>
           <Route path="/dashboard/cart" element={<Cart/>}/>
           {
             user?.accountType === "Instructor" && 
-                <Route path="/dashboard/add-course" element={<Index/>}/>    
+                <Route path="/dashboard/add-course" element={<Index/>}/>  
+                  
           }
+          {
+            user?.accountType === "Instructor" && 
+                <Route path="/dashboard/my-courses" element={<MyCourses/>}/>  
+          }
+
+
+        </Route>
+
+        <Route element={<ViewCourse/>}>
+         {user?.accountType === "Student" && (
+          <>
+            <Route path="/course/:courseId/section/:sectionId/subsection/:subSectionId" element={<VideoSection/> }/>
+          </>
+         )}
         </Route>
 
        
         <Route path="/about" element={<Aboutus/>}   />
         <Route path="contact" element= {<Contactus/>} />
         <Route path="*" element={<Error/>}/>
+        <Route path="/catelog/:catalogname" element={<Catalog/>}/>
+        <Route path="/course/:courseId" element={<Course/>}/>
+        
 
         
         

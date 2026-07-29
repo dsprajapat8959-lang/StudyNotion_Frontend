@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import CourseInformationForm from './courseInformation/CourseInformationForm'
+import CourseBuilderForm from './courseBuilder/CourseBuilderForm'
+import PublishCourse from './publishCourse'
 
 
 const data = [
@@ -52,8 +54,8 @@ const RenderSteps = () => {
         </div>
 
          {step === 1 && <CourseInformationForm />}
-        {/* {step === 2 && <CourseBuilderForm />}
-        {step === 3 &&  <PublishCourse /> } */}
+         {step === 2 && <CourseBuilderForm />}
+         {step === 3 &&  <PublishCourse /> }
        
     </div>
   )

@@ -72,7 +72,7 @@ const CourseInformationForm = () => {
 
       formData.append("tags", JSON.stringify(tags));
       formData.append("instructions", JSON.stringify(requirements));
-
+      
       const response = await createCourse(formData, token);
 
       if (!response) {
@@ -87,7 +87,7 @@ const CourseInformationForm = () => {
   return (
     <div className='mx-8'>
       <br/>
-      <form onSubmit={handleSubmit(onSubmit)} className='w-[665px] h-[1000px] bg-richblack-800 rounded pl-4 text-[14px] text-richblack-5 '>
+      <form onSubmit={handleSubmit(onSubmit)} className='w-[665px] h-fit mb-10 pb-3 bg-richblack-800 rounded pl-4 text-[14px] text-richblack-5 '>
         <div className='pt-7'>
           <label htmlFor='courseTitle'>Course Title <sup className='text-pink-200'>*</sup></label>
           <input
