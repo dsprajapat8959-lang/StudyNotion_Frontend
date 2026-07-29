@@ -21,7 +21,7 @@ const ChipInput = ({setValue,getValues,register}) => {
     const arr = [...tags];
     arr.splice(index,1);
     setTags(arr);
-    setValue("tags",arr);
+    setValue("tags", JSON.stringify(arr));
     
 
   }

@@ -24,7 +24,7 @@ const RequirementField = ({register,getValues,setValue}) => {
     const arr = [...req]
     arr.splice(index,1);
     setReq(arr);
-    setValue("requirements", arr);
+    setValue("requirements", JSON.stringify(arr));
 
 
   }

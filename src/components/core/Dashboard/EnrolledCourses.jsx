@@ -3,11 +3,13 @@ import { getAllEnrolledCourse } from '../../../services/operations/course';
 import { useSelector } from 'react-redux';
 import Loader from '../../common/Loader'
 import ProgressBar from "@ramonak/react-progress-bar";
+import {useNavigate} from 'react-router-dom';
 
 const EnrolledCourses = () => {
 
   const {token} = useSelector((state) => state.auth);
   const[courses, setCourses] = useState([]);
+  const navigate = useNavigate();
   
   useEffect(()=>{
     if(!token) return;
@@ -20,6 +22,7 @@ const EnrolledCourses = () => {
       }
     }
     fetchCourses();
+    console.log(courses);
   },[token])
 
   
@@ -42,11 +45,14 @@ const EnrolledCourses = () => {
         <p className="text-center">Duration</p>
         <p className="text-center">Progress</p>
       </div>
+      
 
       {courses.map((course, index) => (
+        
         <div
           key={index}
           className="grid grid-cols-[3fr_1fr_1fr] items-center gap-6 border-t border-richblack-700 px-6 py-5"
+           onClick={()=>{navigate(`/course/${course._id}/section/${course.courseContent[0]._id}/subsection/${course.courseContent[0].subSection[0]}}`)}}
         >
           <div className="flex gap-5">
             <img

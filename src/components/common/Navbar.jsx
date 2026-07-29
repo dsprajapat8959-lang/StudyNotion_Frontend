@@ -70,7 +70,7 @@ const Navbar = () => {
                                 {
                                     sublinks?.length > 0 && (
                                         sublinks.map((sublink, index)=>(
-                                            <Link key={index} to={sublink.link}>
+                                            <Link key={index} to={`catelog/${sublink.name.split(" ").join("-").toLowerCase()}`}>
                                                 <div className='rounded px-3 py-2 text-[16px] hover:bg-richblack-400'>
                                                     {sublink.name}
                                                 </div>                                            
